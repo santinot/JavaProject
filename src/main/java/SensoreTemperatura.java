@@ -3,7 +3,7 @@ package src.main.java;
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SensoreTemperatura extends Sensore implements Serializable {
+public class SensoreTemperatura extends Sensore implements Serializable, Runnable {
 
     public SensoreTemperatura() {
         super();
@@ -22,4 +22,5 @@ public class SensoreTemperatura extends Sensore implements Serializable {
     public Misurazione scriviDati(Object dato) {
         return new MisurazioneTemperatura(this, (Integer) dato);
     }
+
 }

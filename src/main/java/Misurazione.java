@@ -1,9 +1,13 @@
 package src.main.java;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.*;
 import java.util.Date;
 
-public abstract class Misurazione implements Serializable {
+public abstract class Misurazione implements Serializable, Runnable {
     private final Date data;
     private Sensore sensore;
 
@@ -22,5 +26,21 @@ public abstract class Misurazione implements Serializable {
 
     public Sensore getSensore() {
         return sensore;
+    }
+
+    @Override
+    public void run() {
+        try {
+            DatagramSocket dSock = new DatagramSocket();
+            ByteArrayOutputStream byteStream = new ByteArrayOutputStream(5000);
+            ObjectOutputStream oos = new ObjectOutputStream(byteStream);
+
+            oos.writeObject(this);
+            DatagramPacket packet = new DatagramPacket(byteStream.toByteArray(), byteStream.toByteArray().length, InetAddress.getLocalHost(), 7788);
+            dSock.send(packet);
+            oos.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

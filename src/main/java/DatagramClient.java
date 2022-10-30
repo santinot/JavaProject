@@ -12,18 +12,16 @@ public class DatagramClient {
         SensoreTemperatura st1 = new SensoreTemperatura(1);
         MisurazioneTemperatura mt1 = (MisurazioneTemperatura) st1.scriviDati(st1.generaDati());
 
-        DatagramSocket dSock = new DatagramSocket(7789);
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream(5000);
-        ObjectOutputStream oos = new ObjectOutputStream(byteStream);
+        SensoreTemperatura st2 = new SensoreTemperatura(2);
+        MisurazioneTemperatura mt2 = (MisurazioneTemperatura) st2.scriviDati(st2.generaDati());
 
-        while (true) {
+        while(true){
+
+            mt1.run();
+
             Thread.sleep(1000);
-            oos.writeObject(mt1);
-            DatagramPacket packet = new DatagramPacket(byteStream.toByteArray(), byteStream.toByteArray().length, InetAddress.getLocalHost(), 7788);
-            dSock.send(packet);
-            oos.flush();
-            byteStream.flush();
+            }
         }
     }
-}
+
 

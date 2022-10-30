@@ -3,7 +3,7 @@ import com.github.javafaker.Faker;
 
 import java.io.Serializable;
 
-public abstract class Sensore implements Serializable {
+public abstract class Sensore implements Serializable, Runnable {
     private int id;
     private String position;
 
@@ -19,12 +19,16 @@ public abstract class Sensore implements Serializable {
 
     public abstract Misurazione scriviDati(Object dato);
 
-
     public int getId() {
         return id;
     }
 
     public String getPosition() {
         return position;
+    }
+
+    @Override
+    public void run() {
+        this.scriviDati(this.generaDati());
     }
 }

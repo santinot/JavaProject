@@ -1,7 +1,7 @@
 package src.main.java;
 
 
-public class MisurazioneTemperatura extends Misurazione{
+public class MisurazioneTemperatura extends Misurazione implements Runnable{
     private final int temperatura;
 
     public MisurazioneTemperatura(int t) {

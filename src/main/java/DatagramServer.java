@@ -20,6 +20,9 @@ public class DatagramServer {
             Object o = is.readObject();
 
             System.out.println(((MisurazioneTemperatura)o).getSensore().getId());
+            System.out.println(((MisurazioneTemperatura)o).getSensore().getPosition());
+            System.out.println(((MisurazioneTemperatura)o).getData());
+            System.out.println(((MisurazioneTemperatura)o).getTemperatura());
             byteStream.reset();
         }
     }
