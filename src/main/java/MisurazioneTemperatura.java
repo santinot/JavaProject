@@ -20,6 +20,6 @@ public class MisurazioneTemperatura extends Misurazione{
 
     @Override
     public String toString() {
-        return super.toString() + "Temperatura: " + this.getTemperatura() + "°C" + '\n' ;
+        return super.toString() + "Temperatura: " + this.getTemperatura() + " °C" + '\n' ;
     }
 }
