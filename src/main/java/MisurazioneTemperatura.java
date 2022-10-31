@@ -1,7 +1,7 @@
 package src.main.java;
 
 
-public class MisurazioneTemperatura extends Misurazione implements Runnable{
+public class MisurazioneTemperatura extends Misurazione{
     private final int temperatura;
 
     public MisurazioneTemperatura(int t) {
@@ -16,5 +16,10 @@ public class MisurazioneTemperatura extends Misurazione implements Runnable{
 
     public int getTemperatura() {
         return temperatura;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Temperatura: " + this.getTemperatura() + "°C" + '\n' ;
     }
 }

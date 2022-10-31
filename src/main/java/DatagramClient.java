@@ -1,27 +1,18 @@
 package src.main.java;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 
 public class DatagramClient {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        SensoreTemperatura st1 = new SensoreTemperatura(1);
-        MisurazioneTemperatura mt1 = (MisurazioneTemperatura) st1.scriviDati(st1.generaDati());
+    public static void main(String[] args){
+        SensoreTemperatura st1 = new SensoreTemperatura(100);
+        SensoreAria sa1 = new SensoreAria(200);
 
-        SensoreTemperatura st2 = new SensoreTemperatura(2);
-        MisurazioneTemperatura mt2 = (MisurazioneTemperatura) st2.scriviDati(st2.generaDati());
 
-        while(true){
+        Thread myThread = new Thread(st1);
+        Thread yourThread = new Thread(sa1);
 
-            mt1.run();
-
-            Thread.sleep(1000);
-            }
-        }
+        myThread.start();
+        yourThread.start();
     }
+}
 
 

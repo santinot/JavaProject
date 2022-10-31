@@ -11,18 +11,15 @@ public class DatagramServer {
         DatagramSocket dSock = new DatagramSocket(7788);
 
         byte[] recvBuf = new byte[5000];
-        DatagramPacket packet = new DatagramPacket(recvBuf,recvBuf.length);
 
         while(true) {
+            DatagramPacket packet = new DatagramPacket(recvBuf,recvBuf.length);
             dSock.receive(packet);
             ByteArrayInputStream byteStream = new ByteArrayInputStream(recvBuf);
             ObjectInputStream is = new ObjectInputStream(byteStream);
             Object o = is.readObject();
 
-            System.out.println(((MisurazioneTemperatura)o).getSensore().getId());
-            System.out.println(((MisurazioneTemperatura)o).getSensore().getPosition());
-            System.out.println(((MisurazioneTemperatura)o).getData());
-            System.out.println(((MisurazioneTemperatura)o).getTemperatura());
+            System.out.println(o);
             byteStream.reset();
         }
     }
