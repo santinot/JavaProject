@@ -9,6 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+//Classe base astratta per gli oggetti Sensori che andranno ad  effettuare le misurazioni, ognuno per la sua tipologia.
 public abstract class Sensore implements Serializable, Runnable {
     private int id;
     private String position;
@@ -20,9 +21,10 @@ public abstract class Sensore implements Serializable, Runnable {
         this.id = id;
         this.position = (new Faker()).address().streetAddress();
     }
-
+    //Metodo per la generazione dei dati
     public abstract Object generaDati();
 
+    //Metodo per inserire i dati generati all'interno dell'oggetto Misurazione
     public abstract Misurazione scriviDati(Object dato);
 
     public int getId() {
@@ -33,6 +35,7 @@ public abstract class Sensore implements Serializable, Runnable {
         return position;
     }
 
+    //Implementazione per Multithreading con UDP
     @Override
     public void run() {
         try {

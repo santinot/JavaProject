@@ -5,6 +5,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.json.simple.JSONObject;
+
+//Classe per inviare le misurazioni al database
 public class GestoreDB {
     private final MongoClient client ;
     private final MongoDatabase database ;
@@ -23,7 +25,7 @@ public class GestoreDB {
     }
 
     public void inserimento(JSONObject jsonObject){
-        System.out.println(jsonObject.toString());
+        //System.out.println(jsonObject.toString());
         switch ((int) jsonObject.get("ID") / 100) {
             case 1 -> database.getCollection("Temperatura").insertOne(Document.parse(jsonObject.toJSONString()));
             case 2 -> database.getCollection("Aria").insertOne(Document.parse(jsonObject.toJSONString()));

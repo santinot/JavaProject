@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
+//Classe per lettura file di configuazione database ed ottenere informazioni necessarie
 public class LettoreXML {
     private Document doc;
 

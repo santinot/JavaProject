@@ -9,7 +9,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 public class DatagramServer {
-
     private static JSONObject createJson(Object o){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", ((Misurazione) o).getSensore().getId());
