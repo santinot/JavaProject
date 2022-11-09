@@ -1,3 +1,4 @@
+//Classe per la misurazione della qualità dell'aria
 package src.main.java;
 
 public class MisurazioneAria extends Misurazione{
@@ -16,6 +17,7 @@ public class MisurazioneAria extends Misurazione{
         return iqa;
     }
 
+    //Metodo per formattazione stampa a video delle misurazioni
     @Override
     public String toString() {
         return super.toString() + "Indice Qualità dell'Aria: " + getIqa() + '\n';

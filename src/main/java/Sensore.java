@@ -1,6 +1,7 @@
+//Classe base astratta per gli oggetti Sensori che andranno ad effettuare le misurazioni, ognuno per la sua tipologia
 package src.main.java;
-import com.github.javafaker.Faker;
 
+import com.github.javafaker.Faker;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -9,13 +10,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-//Classe base astratta per gli oggetti Sensori che andranno ad  effettuare le misurazioni, ognuno per la sua tipologia.
+
 public abstract class Sensore implements Serializable, Runnable {
     private int id;
     private String position;
 
-    public Sensore() {
-    }
+    public Sensore() {}
 
     public Sensore(int id) {
         this.id = id;
@@ -49,6 +49,7 @@ public abstract class Sensore implements Serializable, Runnable {
                 dSock.send(packet);
                 byteStream.reset();
                 oos.close();
+                System.out.println("Dati inviati");
                 Thread.sleep(5000);
             }
         }catch (IOException | InterruptedException e) {

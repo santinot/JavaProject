@@ -1,9 +1,10 @@
+//Classe base per le misurazioni effettuate da un sensore
 package src.main.java;
 
 import java.io.Serializable;
 import java.util.Date;
 
-//Classe base per le misurazioni effettuate da un sensore
+
 public abstract class Misurazione implements Serializable {
     private final Date data;
     private Sensore sensore;
