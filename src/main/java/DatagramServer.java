@@ -44,7 +44,7 @@ public class DatagramServer {
             ObjectInputStream is = new ObjectInputStream(byteStream);
             Object o = is.readObject();
             System.out.println("Dati ricevuti");
-            //Insert del pacchetto ricevuto nel db
+            //Creazione del file Json a partire dal pacchetto ricevuto e inserimento nel db
             gestoreDB.inserimento(createJson(o));
             byteStream.reset();
         }
