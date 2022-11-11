@@ -45,7 +45,8 @@ public abstract class Sensore implements Serializable, Runnable {
             while (true) {
                 oos  = new ObjectOutputStream(byteStream);
                 oos.writeObject(this.scriviDati(this.generaDati()));
-                DatagramPacket packet = new DatagramPacket(byteStream.toByteArray(), byteStream.toByteArray().length, InetAddress.getLocalHost(), 7788);
+                DatagramPacket packet = new DatagramPacket(byteStream.toByteArray(), byteStream.toByteArray().length,
+                                                           InetAddress.getLocalHost(), 7788);
                 dSock.send(packet);
                 byteStream.reset();
                 oos.close();
