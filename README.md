@@ -1,28 +1,22 @@
 # SmartCIty: Rilevazione Dati   
-Il progetto consiste nel realizzare un architettura client-server che permetta di ricevere dei dati in input ogni tot tempo
-(ipotizzando che vengano inviati da dei rilevatori/sensoridi una SmartCity),
-comunicarli ad una piattaforma che si occuperà di trasferirli ad un Database in cui questi dati verranno raccolti.
-Il tutto dovrà essere realizzato secondo implementazione MultiThreading. 
-Riguardo alla generazione dei dati, quindi il client, questi devono essere ottenuti tramite l'utilizzo della Serializzazione, quindi ci sarà una classe base che genererà i dati in maniera
-randomica all'interno di un certo intervallo, che verrà estesa da una superclasse Misurazione, dalla quale discenderanno le altre classi rappresentanti le singole
-rilevazioni (es. temperatura, inquinamento aria, ...).
-Riguardo il server invece, questo dovrà avere una classe astratta GestoreDatabase che permetta la comunicazioni dei dati, in modo che sia possibile l'indipendeza del
-sistema dal database utilizzato, così da generalizzare il tutto per un qualsiasi db utilizzato (nel progetto verrà utilizzato mongodb).
-I dati all'interno del database dovranno essere memorizzati sotto forma di JSON. ( non so bene come ma credo con i file)
-Verrà utilizzato XML per via del gestore delle classi MAVEN e per le API utilizzate per le comunicazioni.
-
-
-
-Requisiti progetto:
--Information Hiding
--Client/Server
--Multithreading
--Database
--XML
--UML delle classi.
-
-GL.
-
-
-Classe sensore astratto, da cui derivano i vari che sensori.
-Classe misurazione astratta da cui derivano le varie misurazioni specifiche, che serializza i dati e sarà integrata in sensore.
+Questo progetto è stato realizzato per approfondire lo studio del paradigma della
+programmazione a oggetti, utilizzando l’omonimo linguaggio Java.
+Il caso affrontato prevede di implementare un’architettura Client-Server per un’ipotetica
+SmartCity, in cui il ruolo di client è svolto da dei Sensori di Rilevamento Dati, che si occupano
+principalmente di raccogliere informazioni riguardo il valore della Temperatura, della Qualità
+dell’Aria e della Qualità dell’Acqua del luogo in cui sono posizionati. Riguardo al server, questo
+si occuperà di ricevere i dati inviati da ogni sensore e di inoltrarli ad un database, il quale li
+organizzerà e conserverà in base al tipo di misurazione rilevata.
+Per la comunicazione tra i sensori ed il server è stato utilizzato il protocollo di rete UDP (User
+Datagram Protocol), in quanto si vuole dare una maggiore rilevanza alla velocità con cui i dati
+vengono scambiati, piuttosto che alla garanzia che questi arrivino sicuramente a destinazione ed
+in maniera ordinata; questo protocollo infatti permette di evitare la creazione di una connessione
+“sicura” per ogni pacchetto inviato ed i relativi controlli (acknowledgement), riuscendo a snellire
+il processo di comunicazione e ad aumentare il throughput. Inoltre, ogni misurazione che viene
+effettuata dai sensori, prima di essere inviata, viene serializzata, in modo da convertirla in un
+flusso di byte che poi verrà ricostruito a destinazione, e inserito all’interno del database sotto
+forma di file JSON, per una migliore organizzazione delle informazioni raccolte.
+Per la realizzazione del progetto viene infine utilizzato un approccio multithreading, in maniera
+da rendere indipendente l’attività dei sensori. Ognuno di questi, quindi, lancerà un thread nel
+momento in cui viene messo in esecuzione, tramite il quale riuscirà ad effettuare ed inviare le
+proprie misurazioni.
