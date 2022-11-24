@@ -1,9 +1,10 @@
-//Classe per lettura file di configuazione database ed ottenere informazioni necessarie
 package src.main.java;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,12 +12,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
-
+//Classe per lettura file di configuazione database ed ottenere informazioni necessarie
 public class LettoreXML {
     private Document doc;
 
     public LettoreXML(String path) {
-        //Creazione del documento
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);

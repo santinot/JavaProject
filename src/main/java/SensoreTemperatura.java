@@ -23,5 +23,4 @@ public class SensoreTemperatura extends Sensore implements Serializable, Runnabl
     public Misurazione scriviDati(Object dato) {
         return new MisurazioneTemperatura(this, (Integer) dato);
     }
-
 }
